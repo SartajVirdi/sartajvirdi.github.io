@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sartaj Singh Virdi — ML &amp; Data Science</title>
+<meta name="description" content="Sartaj Singh Virdi — Computer Science student at Thapar Institute. Machine learning research, applied data science, and competitive ML." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=JetBrains+Mono:wght@400;500&family=Inter+Tight:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #f5f1ea;
+    --bg-alt: #ebe5da;
+    --ink: #1a1a1a;
+    --ink-soft: #4a4a4a;
+    --ink-faint: #8a8478;
+    --accent: #b8391a;
+    --accent-soft: #e8ddd0;
+    --rule: #d9d0c1;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Inter Tight", -apple-system, sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(184,57,26,0.04) 0%, transparent 40%),
+      radial-gradient(circle at 80% 80%, rgba(184,57,26,0.03) 0%, transparent 45%);
+  }
+  h1, h2, h3, h4 {
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    margin: 0;
+  }
+  .mono {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+    transition: border-color 0.2s ease, color 0.2s ease;
+  }
+  a:hover { border-bottom-color: var(--accent); color: var(--accent); }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 2rem; }
+
+  nav.top {
+    position: sticky; top: 0; z-index: 10;
+    backdrop-filter: blur(10px);
+    background: rgba(245,241,234,0.85);
+    border-bottom: 1px solid var(--rule);
+  }
+  nav.top .wrap {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-top: 1.1rem; padding-bottom: 1.1rem;
+  }
+  nav.top .brand {
+    font-family: "Fraunces", serif; font-size: 1.15rem; font-weight: 500;
+    border-bottom: none; font-style: italic;
+  }
+  nav.top ul { display: flex; gap: 2rem; list-style: none; margin: 0; padding: 0; }
+  nav.top ul a { border-bottom: none; font-size: 0.92rem; color: var(--ink-soft); }
+  nav.top ul a:hover { color: var(--accent); }
+  @media (max-width: 640px) {
+    nav.top ul { gap: 1.1rem; }
+    nav.top ul a { font-size: 0.85rem; }
+  }
+
+  .hero { padding: 7rem 0 5rem; position: relative; }
+  .hero-grid { display: grid; grid-template-columns: 1fr auto; gap: 3rem; align-items: end; }
+  .hero h1 { font-size: clamp(3rem, 9vw, 6.5rem); font-weight: 300; }
+  .hero h1 .italic { font-style: italic; color: var(--accent); font-weight: 400; }
+  .hero .tag { margin-top: 2rem; max-width: 520px; font-size: 1.1rem; color: var(--ink-soft); line-height: 1.6; }
+  .hero-meta { text-align: right; font-size: 0.85rem; line-height: 1.9; color: var(--ink-faint); min-width: 160px; }
+  .hero-meta .mono { display: block; margin-bottom: 0.4rem; }
+  .hero-meta strong { color: var(--ink); font-weight: 500; }
+  @media (max-width: 760px) {
+    .hero { padding: 4rem 0 3rem; }
+    .hero-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .hero-meta { text-align: left; }
+  }
+
+  section { padding: 5rem 0; border-top: 1px solid var(--rule); }
+  .section-head {
+    display: grid; grid-template-columns: 160px 1fr; gap: 3rem;
+    margin-bottom: 3.5rem; align-items: baseline;
+  }
+  .section-head .label { padding-top: 0.4rem; }
+  .section-head h2 { font-size: clamp(2rem, 4.5vw, 3rem); font-weight: 400; }
+  .section-head h2 em { font-style: italic; color: var(--accent); }
+  @media (max-width: 640px) {
+    .section-head { grid-template-columns: 1fr; gap: 0.5rem; margin-bottom: 2rem; }
+  }
+
+  .about-content { display: grid; grid-template-columns: 160px 1fr; gap: 3rem; }
+  .about-text { max-width: 680px; font-size: 1.05rem; line-height: 1.7; }
+  .about-text p { margin: 0 0 1.2rem; }
+  .about-text p:last-child { margin-bottom: 0; }
+  .highlight {
+    background: linear-gradient(to top, var(--accent-soft) 40%, transparent 40%);
+    padding: 0 2px;
+  }
+  .chips { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.5rem 0.7rem; }
+  .chip {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--ink-soft);
+    border: 1px solid var(--rule);
+    padding: 0.35rem 0.7rem;
+    border-radius: 2px;
+  }
+  @media (max-width: 640px) { .about-content { grid-template-columns: 1fr; gap: 0; } }
+
+  .projects { display: flex; flex-direction: column; }
+  .project {
+    display: grid; grid-template-columns: 160px 1fr 180px; gap: 3rem;
+    padding: 2.5rem 0; border-top: 1px solid var(--rule);
+    align-items: start;
+  }
+  .project:first-child { border-top: none; padding-top: 0; }
+  .project .num { font-family: "JetBrains Mono", monospace; font-size: 0.85rem; color: var(--ink-faint); padding-top: 0.5rem; }
+  .project .body h3 { font-size: 1.75rem; font-weight: 500; margin-bottom: 0.8rem; }
+  .project .body h3 em { font-style: italic; font-weight: 400; color: var(--accent); }
+  .project .body p { margin: 0 0 0.9rem; color: var(--ink-soft); max-width: 620px; line-height: 1.65; }
+  .project .body p:last-child { margin-bottom: 0; }
+  .project .meta { font-size: 0.85rem; color: var(--ink-faint); line-height: 1.8; text-align: right; padding-top: 0.8rem; }
+  .project .meta .mono { display: block; margin-bottom: 0.3rem; }
+  .project .meta strong { color: var(--ink); font-weight: 500; font-family: "Fraunces", serif; font-style: italic; }
+
+  .stats { display: flex; gap: 2rem; margin-top: 1rem; flex-wrap: wrap; }
+  .stat .n { font-family: "Fraunces", serif; font-size: 1.6rem; font-weight: 500; color: var(--accent); display: block; line-height: 1; }
+  .stat .l { font-family: "JetBrains Mono", monospace; font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-faint); margin-top: 0.3rem; display: block; }
+
+  @media (max-width: 860px) {
+    .project { grid-template-columns: 1fr; gap: 1rem; }
+    .project .meta { text-align: left; }
+  }
+
+  .achievements { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+  .card {
+    background: var(--bg-alt); border: 1px solid var(--rule);
+    padding: 2rem;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+  }
+  .card:hover { transform: translateY(-3px); border-color: var(--accent); }
+  .card .rank {
+    font-family: "Fraunces", serif; font-style: italic;
+    font-size: 3.2rem; font-weight: 400; color: var(--accent);
+    line-height: 1; display: block;
+  }
+  .card .rank-sub {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.72rem; text-transform: uppercase; color: var(--ink-faint);
+    letter-spacing: 0.08em; display: block; margin-top: 0.3rem;
+  }
+  .card h4 { font-size: 1.15rem; font-weight: 500; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+  .card p { margin: 0; color: var(--ink-soft); font-size: 0.95rem; }
+  @media (max-width: 640px) { .achievements { grid-template-columns: 1fr; } }
+
+  .resume-block { display: grid; grid-template-columns: 160px 1fr auto; gap: 3rem; align-items: center; }
+  .resume-block p {
+    margin: 0; font-family: "Fraunces", serif;
+    font-size: 1.6rem; font-weight: 300; line-height: 1.3;
+  }
+  .resume-block p em { font-style: italic; color: var(--accent); }
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    background: var(--ink); color: var(--bg);
+    padding: 1rem 1.6rem; border: none;
+    font-family: "Inter Tight", sans-serif; font-size: 0.92rem; letter-spacing: 0.02em;
+    cursor: pointer; white-space: nowrap;
+    transition: background 0.2s ease, transform 0.15s ease;
+  }
+  .btn:hover { background: var(--accent); transform: translateY(-1px); }
+  .btn .arrow { transition: transform 0.2s ease; }
+  .btn:hover .arrow { transform: translate(2px, -2px); }
+  @media (max-width: 760px) { .resume-block { grid-template-columns: 1fr; gap: 1.2rem; } }
+
+  .contact { background: var(--ink); color: var(--bg); margin-top: 0; border-top: none; }
+  .contact .section-head h2 { color: var(--bg); }
+  .contact .section-head .label { color: rgba(245,241,234,0.5); }
+  .contact a { color: var(--bg); border-bottom-color: rgba(245,241,234,0.25); }
+  .contact a:hover { color: #f4a582; border-bottom-color: #f4a582; }
+  .contact-grid { display: grid; grid-template-columns: 160px 1fr; gap: 3rem; }
+  .contact-list {
+    list-style: none; margin: 0; padding: 0;
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem 3rem;
+  }
+  .contact-list li { padding-bottom: 1.2rem; border-bottom: 1px solid rgba(245,241,234,0.15); }
+  .contact-list .mono { color: rgba(245,241,234,0.5); display: block; margin-bottom: 0.4rem; }
+  .contact-list .val { font-family: "Fraunces", serif; font-size: 1.25rem; word-break: break-word; }
+  @media (max-width: 760px) {
+    .contact-grid { grid-template-columns: 1fr; gap: 1rem; }
+    .contact-list { grid-template-columns: 1fr; gap: 1rem; }
+  }
+
+  footer { background: var(--ink); color: rgba(245,241,234,0.4); font-size: 0.82rem; padding: 2rem 0; }
+  footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+  footer .mono { color: rgba(245,241,234,0.5); }
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero h1, .hero .tag, .hero-meta { animation: rise 0.9s ease forwards; opacity: 0; }
+  .hero h1 { animation-delay: 0.1s; }
+  .hero .tag { animation-delay: 0.3s; }
+  .hero-meta { animation-delay: 0.5s; }
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+
+  ::selection { background: var(--accent); color: var(--bg); }
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="wrap">
+    <a href="#top" class="brand">Sartaj <span style="color:var(--accent);">·</span></a>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#achievements">Achievements</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <span class="mono">Sartaj Singh Virdi · Patiala, India</span>
+        <h1 style="margin-top: 1.2rem;">
+          Machine learning,<br>
+          <span class="italic">built to ship.</span>
+        </h1>
+        <p class="tag">
+          Aspiring Data Scientist and ML Engineer. Computer Science undergraduate at Thapar Institute — I build ML systems, do research, and compete in ML challenges.
+        </p>
+      </div>
+      <div class="hero-meta">
+        <span class="mono">Currently</span>
+        <strong>B.Tech CSE · TIET</strong><br>
+        CGPA 8.18 / 10<br><br>
+        <span class="mono">Focus</span>
+        Data Science,<br>
+        ML Engineering<br><br>
+        <span class="mono">Status</span>
+        Open to internships<br>
+        &amp; research roles
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="mono label">§ 01 — About</span>
+      <h2>Aspiring <em>Data Scientist</em> and ML Engineer.</h2>
+    </div>
+    <div class="about-content">
+      <div></div>
+      <div class="about-text">
+        <p>
+          I'm a Computer Science student at <strong>Thapar Institute of Engineering &amp; Technology</strong>, Patiala, aiming for Data Scientist and ML Engineer roles. I like problems where a clean model has to work on messy, real data — and where the system around it has to actually ship.
+        </p>
+        <p>
+          Right now, I'm doing research on <span class="highlight">privacy-preserving routing in the Lightning Network</span> with Dr. Neeraj Sharma (IIT Mandi) and Prof. Kalpesh Kapoor (IIT Guwahati). Before that, during a summer internship at Thapar's CSED ELC Research Cell, I built a CNN + DNN model on voice and tremor signals for <span class="highlight">early Parkinson's detection</span>, reaching 91% accuracy.
+        </p>
+        <p>
+          I also compete in ML challenges. I've finished in the top 5 in two big competitions across 9,000+ participants, and I enjoy the process — the feature engineering, the careful validation, and the last-hour leaderboard climb.
+        </p>
+        <div class="chips">
+          <span class="chip">Python</span>
+          <span class="chip">PyTorch</span>
+          <span class="chip">TensorFlow</span>
+          <span class="chip">Scikit-learn</span>
+          <span class="chip">XGBoost</span>
+          <span class="chip">LightGBM</span>
+          <span class="chip">CatBoost</span>
+          <span class="chip">FAISS</span>
+          <span class="chip">FastAPI</span>
+          <span class="chip">Streamlit</span>
+          <span class="chip">Docker</span>
+          <span class="chip">Librosa</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="mono label">§ 02 — Selected work</span>
+      <h2>Research &amp; <em>projects</em>.</h2>
+    </div>
+
+    <div class="projects">
+
+      <article class="project reveal">
+        <span class="num">01</span>
+        <div class="body">
+          <h3>Privacy-Preserving <em>Lightning Network Routing</em></h3>
+          <p>
+            Ongoing research with <strong>Dr. Neeraj Sharma</strong> (IIT Mandi) and <strong>Prof. Kalpesh Kapoor</strong> (IIT Guwahati). I'm studying wormhole-based routing and bilinear pairing constructions to improve sender–receiver privacy on the Lightning Network beyond current assumptions.
+          </p>
+          <p>
+            The work builds on the group's published research on routing, attacks, and deadlock prevention in Payment Channel Networks (IEEE TNSE, IEEE TNSM, IEEE Blockchain, COMSNETS).
+          </p>
+        </div>
+        <div class="meta">
+          <span class="mono">Type</span>
+          <strong>Research</strong><br>
+          Sep 2025 — Present<br><br>
+          <span class="mono">Domain</span>
+          Blockchain,<br>privacy &amp; routing
+        </div>
+      </article>
+
+      <article class="project reveal">
+        <span class="num">02</span>
+        <div class="body">
+          <h3>Early Parkinson's Detection — <em>Voice &amp; Tremor</em></h3>
+          <p>
+            Summer intern at the <strong>CSED ELC Research Cell, Thapar Institute</strong>. Built a multimodal CNN + DNN fusion pipeline on voice and tremor signals for early Parkinson's detection, achieving <strong>91% accuracy</strong> on the target cohort.
+          </p>
+          <p>
+            Built the audio and IMU preprocessing with Librosa and SciPy — denoising and feature extraction to keep signal quality consistent across different subjects.
+          </p>
+          <div class="stats">
+            <div class="stat"><span class="n">91%</span><span class="l">accuracy</span></div>
+            <div class="stat"><span class="n">Multi-</span><span class="l">modal fusion</span></div>
+          </div>
+        </div>
+        <div class="meta">
+          <span class="mono">Type</span>
+          <strong>Research intern</strong><br>
+          Jun — Aug 2025<br><br>
+          <span class="mono">Stack</span>
+          PyTorch, Librosa,<br>SciPy
+        </div>
+      </article>
+
+      <article class="project reveal">
+        <span class="num">03</span>
+        <div class="body">
+          <h3>Multimodal BCI — <em>EMG modality (in progress)</em></h3>
+          <p>
+            Team capstone project building a brain–computer interface that fuses EEG, EMG, and EOG signals to control an exoskeleton arm. I'm leading the EMG side — owning the full pipeline from signal preprocessing and feature extraction to model training and live inference.
+          </p>
+          <p>
+            Using the Jeong et al. dataset, I've built and compared Random Forest, XGBoost, and a 1D-CNN to classify hand-movement intent against rest. Current focus is improving cross-subject generalization and tightening the real-time inference loop for a smoother hand-off to the fusion layer.
+          </p>
+          <div class="stats">
+            <div class="stat"><span class="n">3</span><span class="l">models compared</span></div>
+            <div class="stat"><span class="n">EEG · EMG · EOG</span><span class="l">fusion target</span></div>
+          </div>
+        </div>
+        <div class="meta">
+          <span class="mono">Type</span>
+          <strong>Capstone · Ongoing</strong><br>
+          Role: EMG lead<br><br>
+          <span class="mono">Stack</span>
+          PyTorch, scikit-learn,<br>SciPy
+        </div>
+      </article>
+
+      <article class="project reveal">
+        <span class="num">04</span>
+        <div class="body">
+          <h3>ML Drift Monitor — <em>Observability for production ML</em></h3>
+          <p>
+            An ML monitoring system that detects feature drift (using KS and PSI tests) and performance decay across sklearn, XGBoost, LightGBM, and CatBoost models. The goal is to catch silent model decay before it hurts production pipelines.
+          </p>
+          <p>
+            Retraining kicks in automatically when F1 drops or drift crosses a threshold. Includes JSON/CSV audit logs and a Streamlit dashboard for easy monitoring.
+          </p>
+          <div class="stats">
+            <div class="stat"><span class="n">KS · PSI</span><span class="l">drift tests</span></div>
+            <div class="stat"><span class="n">4</span><span class="l">model backends</span></div>
+          </div>
+        </div>
+        <div class="meta">
+          <span class="mono">Type</span>
+          <strong>MLOps project</strong><br>
+          Feb 2026 — Present<br><br>
+          <span class="mono">Stack</span>
+          Streamlit, Python
+        </div>
+      </article>
+
+      <article class="project reveal">
+        <span class="num">05</span>
+        <div class="body">
+          <h3>Retrieval-Augmented <em>QA Service</em></h3>
+          <p>
+            A RAG service built with FastAPI. It ingests PDFs, retrieves relevant context through FAISS, and uses it to ground OpenAI responses — cutting down hallucinations on domain-specific documents.
+          </p>
+          <p>
+            Containerized with Docker and deployed on Koyeb for fast public access. Built and refined across <strong>140+ commits</strong>.
+          </p>
+          <div class="stats">
+            <div class="stat"><span class="n">140+</span><span class="l">commits</span></div>
+            <div class="stat"><span class="n">FAISS</span><span class="l">vector search</span></div>
+          </div>
+        </div>
+        <div class="meta">
+          <span class="mono">Type</span>
+          <strong>Engineering</strong><br>
+          Jul — Aug 2025<br><br>
+          <span class="mono">Stack</span>
+          FastAPI, Docker,<br>FAISS, Koyeb
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section id="achievements">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="mono label">§ 03 — Recognition</span>
+      <h2>Competitions &amp; <em>honors</em>.</h2>
+    </div>
+    <div class="achievements">
+
+      <div class="card reveal">
+        <span class="rank">04</span>
+        <span class="rank-sub">Rank · Top 0.2% · 1,700+ participants</span>
+        <h4>Zindi — Financial Health Prediction Challenge</h4>
+        <p>Team Dhurandhar. Built a gradient-boosted ensemble (XGBoost, LightGBM, CatBoost) with engineered demographic and transactional features to predict financial health across four African countries. Dec 2025 – Mar 2026.</p>
+      </div>
+
+      <div class="card reveal">
+        <span class="rank">05</span>
+        <span class="rank-sub">Rank · Top 0.1% · 7,400+ participants</span>
+        <h4>Zelestra × AWS ML Ascend — Solar PV Prediction</h4>
+        <p>Team Dragon Tech. Built a stacked ensemble (Ridge, SVR, Random Forest, XGBoost with an ElasticNet meta-learner), with time-aware features and outlier handling, to predict solar PV efficiency. May – Jun 2025.</p>
+      </div>
+
+      <div class="card reveal">
+        <span class="rank">—</span>
+        <span class="rank-sub">Credential · 2025</span>
+        <h4>ML Specialization · Stanford &amp; DeepLearning.AI</h4>
+        <p>Supervised learning, advanced algorithms, and unsupervised learning with reinforcement learning.</p>
+      </div>
+
+      <div class="card reveal">
+        <span class="rank">—</span>
+        <span class="rank-sub">Credential · 2026</span>
+        <h4>IBM Data Analytics Foundations</h4>
+        <p>Excel for Data Analysis (98.42%) and Intro to Data Analytics (99.99%). Plus 15+ additional certifications in ML, AI, and data science — full list on LinkedIn.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="resume">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="mono label">§ 04 — Dossier</span>
+      <h2>The <em>short version</em>.</h2>
+    </div>
+    <div class="resume-block">
+      <div></div>
+      <p>A one-page summary of education, research, projects, and competition results.</p>
+      <a href="CV_Sartaj.pdf" download class="btn">
+        Download CV
+        <span class="arrow">↗</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="mono label">§ 05 — Contact</span>
+      <h2>Say <em>hello</em>.</h2>
+    </div>
+    <div class="contact-grid">
+      <div></div>
+      <ul class="contact-list">
+        <li>
+          <span class="mono">Email</span>
+          <a class="val" href="mailto:sartajvirdi@gmail.com">sartajvirdi@gmail.com</a>
+        </li>
+        <li>
+          <span class="mono">Phone</span>
+          <a class="val" href="tel:+919779200431">+91 97792 00431</a>
+        </li>
+        <li>
+          <span class="mono">LinkedIn</span>
+          <a class="val" href="https://www.linkedin.com/in/sartajvirdi/" target="_blank" rel="noopener">Sartaj Singh Virdi</a>
+        </li>
+        <li>
+          <span class="mono">GitHub</span>
+          <a class="val" href="https://github.com/SartajVirdi" target="_blank" rel="noopener">@SartajVirdi</a>
+        </li>
+        <li>
+          <span class="mono">LeetCode</span>
+          <a class="val" href="https://leetcode.com/u/Tazu_/" target="_blank" rel="noopener">@Tazu_</a>
+        </li>
+        <li>
+          <span class="mono">Location</span>
+          <span class="val">Patiala, India</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span class="mono">© 2026 · Sartaj Singh Virdi</span>
+    <span class="mono">Hand-built · Patiala, IN</span>
+  </div>
+</footer>
+
+<script>
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
